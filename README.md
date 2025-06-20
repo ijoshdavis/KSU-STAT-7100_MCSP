@@ -5,9 +5,9 @@ In this project, your team will design and conduct a Monte Carlo simulation stud
 While you will simulate data, your design must be rooted in a realistic dataset, scenario, or journal article that provides motivation for the distributions and assumptions you use. The focus is on learning how to model randomness and uncertainty using tools from this course.
 
 ## 📅 Deadlines
-* Week 4	Submit group info, topic, and a brief idea	June 20
-* Week 6	Status report with partial code and participation update	July 4
-* Week 8	Final report, code, and presentation	July 18
+* Week 4 - Submit group info, topic, and a brief idea	June 20
+* Week 6 - Status report with partial code and participation update	July 4
+* Week 8 - Final report, code, and presentation	July 18
 
 ## 🧠 AI Usage Policy
 * Up to 10% of code or text can originate from AI tools (e.g., ChatGPT, Copilot).

@@ -12,7 +12,7 @@ While you will simulate data, your design must be rooted in a realistic dataset,
 ## 🧠 AI Usage Policy
 * Up to 10% of code or text can originate from AI tools (e.g., ChatGPT, Copilot).
 * You must document any AI use in an [Appendix: AI Log](deliverables/Appendix:%20AI%20Log.txt).
-* What tools were used.
+* What tools were used. [Appendix: Tools Used](deliverables/Appendix%3A%20Tools%20Used.txt) was created to capture this.
 * What parts of the code/text it helped generate.
 * How you reviewed/verified the results.
 * Clearly label AI-assisted content in comments or footnotes.

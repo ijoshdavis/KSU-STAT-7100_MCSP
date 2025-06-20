@@ -28,3 +28,4 @@ While you will simulate data, your design must be rooted in a realistic dataset,
 ## 🤔 References
 * [Project Description & Instructions](docs/Project%20Description.pdf)
 * [Course Syllabus](docs/Course%20Syllabus.pdf)
+* [Appendix: AI Log](deliverables/Appendix:%20AI%20Log.txt)

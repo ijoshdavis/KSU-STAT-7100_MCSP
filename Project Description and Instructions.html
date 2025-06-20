@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html><head><link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css"></head><body style="color: rgb(32, 33, 34); font-family: Lato, sans-serif;"><h3><strong>Monte Carlo Simulation Project</strong></h3>
+<p><strong>Course:</strong> Advanced Statistics with Applications in R<br><strong>Delivery Format:</strong> Team project (1–3 students)</p>
+<hr>
+<h3>🔍 Overview</h3>
+<p>In this project, your team will design and conduct a Monte Carlo simulation study based on a real-world context. Rather than abstract synthetic scenarios, each team will choose an application domain such as public health, supply chains, sports analytics, finance, or environmental monitoring.</p>
+<p>While you will <em>simulate</em> data, your design must be rooted in a <em>realistic</em> dataset, scenario, or journal article that provides motivation for the distributions and assumptions you use. The focus is on learning how to model randomness and uncertainty using tools from this course.</p>
+<hr>
+<h3>🎯 Learning Objectives</h3>
+<p>By the end of this project, you should be able to:</p>
+<ul>
+<li>
+<p>Translate a real-world decision problem into a statistical simulation framework.</p>
+</li>
+<li>
+<p>Choose and justify appropriate probability models and distributions.</p>
+</li>
+<li>
+<p>Implement a reproducible Monte Carlo simulation in R.</p>
+</li>
+<li>
+<p>Analyze the results using inferential and descriptive tools (e.g., confidence intervals, hypothesis tests - <em><strong>Optional</strong></em>).</p>
+</li>
+<li>
+<p>Communicate insights clearly and professionally in written and oral formats.</p>
+</li>
+</ul>
+<hr>
+<h3>👥 Team Structure</h3>
+<ul>
+<li>
+<p>Teams of 1–3 students.</p>
+</li>
+<li>
+<p>Assign a <strong>Team Leader</strong> to oversee progress and communication.</p>
+</li>
+<li>
+<p>Each member must actively contribute and present a portion of the final deliverables.</p>
+</li>
+<li>
+<p>Peer evaluations may affect individual grades in cases of unequal participation.</p>
+</li>
+</ul>
+<hr>
+<h3>🗂 Project Tasks</h3>
+<h4>1. <strong>Choose a Context &amp; Define Your Simulation Goal</strong></h4>
+<ul>
+<li>
+<p>Start with a real-world question (e.g., from a journal article, online dataset, or report).</p>
+</li>
+<li>
+<p>Example: “How would increased demand variability affect order delays in a supply chain?” or “How often would a cancer screening test miss a diagnosis under new sensitivity thresholds?”</p>
+</li>
+<li>
+<p>Translate this into a <em>simulation</em> problem (define variables, events, outcomes).</p>
+</li>
+</ul>
+<h4>2. <strong>Build the Statistical Framework</strong></h4>
+<ul>
+<li>
+<p>Identify key random variables and their distributions.</p>
+</li>
+<li>
+<p>Distributions must be covered in the course (e.g., Exponential, Poisson, Binomial, Normal, Gamma, Lognormal).</p>
+</li>
+<li>
+<p>Justify each choice and define assumptions clearly.</p>
+</li>
+<li>
+<p>Explain how you will simulate the process (what loops? what metrics? how many repetitions?).</p>
+</li>
+</ul>
+<h4>3. <strong>Implement in R</strong></h4>
+<ul>
+<li>
+<p>Use <code inline="">set.seed()</code> for reproducibility.</p>
+</li>
+<li>
+<p>Your code must be:</p>
+<ul>
+<li>
+<p>Well-annotated with comments.</p>
+</li>
+<li>
+<p>Modular, ideally using functions.</p>
+</li>
+<li>
+<p>Saved and submitted as a <code inline="">.R</code> or <code inline="">.Rmd</code> file.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Use vectorized operations where possible to ensure efficiency.</p>
+</li>
+</ul>
+<h4>4. <strong>Analyze &amp; Interpret</strong></h4>
+<ul>
+<li>
+<p>Summarize simulation results using appropriate statistical methods:</p>
+<ul>
+<li>
+<p>Descriptive summaries (means, variances).</p>
+</li>
+<li>
+<p>Visualization (histograms, density plots, etc.).</p>
+</li>
+<li>
+<p>Confidence intervals and hypothesis tests (where relevant) - <em><strong>Optional</strong></em>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Discuss what these results mean in context — what decision could the client make?</p>
+</li>
+</ul>
+<h4>5. <strong>Communicate Your Findings</strong></h4>
+<ul>
+<li>
+<p><strong>Written Report</strong> (5–7 pages):</p>
+<ul>
+<li>
+<p>Problem background.</p>
+</li>
+<li>
+<p>Simulation design and methods.</p>
+</li>
+<li>
+<p>Results and interpretation.</p>
+</li>
+<li>
+<p>Limitations and possible extensions.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Live Presentation</strong> (15–20 min): Each team member should explain a substantial part.</p>
+</li>
+</ul>
+<hr>
+<h3>🧠 AI Usage Policy</h3>
+<ul>
+<li>
+<p>Up to 10% of code or text can originate from AI tools (e.g., ChatGPT, Copilot).</p>
+</li>
+<li>
+<p>You must document any AI use in an <strong>Appendix: AI Log</strong>:</p>
+<ul>
+<li>
+<p>What tools were used.</p>
+</li>
+<li>
+<p>What parts of the code/text it helped generate.</p>
+</li>
+<li>
+<p>How you reviewed/verified the results.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Clearly label AI-assisted content in comments or footnotes.</p>
+</li>
+</ul>
+<hr>
+<h3>📅 Timeline</h3>
+<table>
+<thead>
+<tr>
+<th>Deliverable</th>
+<th>Description</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Week 4</td>
+<td>Submit group info, topic, and a brief idea</td>
+<td>June 20</td>
+</tr>
+<tr>
+<td>Week 6</td>
+<td>Status report with partial code and participation update</td>
+<td>July 4</td>
+</tr>
+<tr>
+<td>Week 8</td>
+<td>Final report, code, and presentation</td>
+<td>July 18</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>✅ Evaluation Rubric Highlights</h3>
+<ul>
+<li>
+<p>Clarity and feasibility of simulation design.</p>
+</li>
+<li>
+<p>Justification of statistical assumptions.</p>
+</li>
+<li>
+<p>Quality and reproducibility of code.</p>
+</li>
+<li>
+<p>Accuracy and depth of analysis.</p>
+</li>
+<li>
+<p>Professional communication (written and oral).</p>
+</li>
+<li>
+<p>Transparency and ethical use of AI tools.</p>
+</li>
+</ul></body></html>

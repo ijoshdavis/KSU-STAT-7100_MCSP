@@ -11,6 +11,6 @@ While you will simulate data, your design must be rooted in a realistic dataset,
 
 
 ## References
-* 
+* [docs/Course Syllabus.pdf]
 
 

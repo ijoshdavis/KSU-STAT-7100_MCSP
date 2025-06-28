@@ -31,6 +31,18 @@ Constraints of Loan
   Long-term approval and risk
   eg score, credit history, prior loan...
 
+INPUTS
+Applicaint
+  demographics...
+Market Data
+  market data, whatever need...that can to
+
+RUN SIMULATOR
+  input to run the simulation.
+
+OUTPUT
+  For each applicant, approved or not - 
+  
 
 Action
   * 

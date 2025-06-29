@@ -16,10 +16,9 @@ OpenAI.&nbsp;ChatGPT: Language Model (June 2025 Version). OpenAI, 2025. ChatGPT,
 Needing a Loan:
   
 
-Models
-  The economy
-  Risk simi
-
+* Models
+  * The economy
+  * Risk simi
 
 
 Data Sources
@@ -43,6 +42,3 @@ RUN SIMULATOR
 OUTPUT
   For each applicant, approved or not - 
   
-
-Action
-  * 

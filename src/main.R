@@ -2,11 +2,6 @@
 # main.R
 ################################################################################
 
-
-# =======================
-# 1. Environment setup
-# =======================
-
 # Install Packages
 if (!requireNamespace("rstudioapi", quietly = TRUE)) {
   install.packages("rstudioapi")
@@ -19,7 +14,7 @@ this_dir <- dirname(this_file)
 setwd(this_dir)
 cat("Working directory set to:", this_dir, "\n")
 
-# 
+# Project Library & Functions
 source("inputs.R")
 source("monte_carlo_simulator.R")
 source("output_analysis.R")

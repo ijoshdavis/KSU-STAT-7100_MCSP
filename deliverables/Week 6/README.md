@@ -8,10 +8,12 @@ We are building a simulation that reflects both borrower-level uncertainty (inco
 -	Loan approval decision based on default risk and policy thresholds
 -	Loan outcomes like default or repayment, and the resulting profit or loss.
 -	Annual cycles to simulate population shift over 50 years
+-	
 Input Model
 -	Applicant variables: age, income, credit score, health status
 -	Market/Economic factors: interest rate
--	Policy thresholds: default risk limits used to accept or deny applicants 
+-	Policy thresholds: default risk limits used to accept or deny applicants
+-	
 Output
 -	Loan approval status 
 -	Whether the loan defaulted 

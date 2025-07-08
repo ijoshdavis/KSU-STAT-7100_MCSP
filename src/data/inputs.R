@@ -2,6 +2,8 @@
 # inputs.R
 ################################################################################
 
+cat("[DEBUG] Loading inputs.R\n")
+
 # Set global parameters
 loan_amount <- 50000
 interest_rate <- 0.06

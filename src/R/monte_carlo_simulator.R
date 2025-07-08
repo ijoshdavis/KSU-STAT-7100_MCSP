@@ -2,6 +2,8 @@
 # monte_carlo_simulator.R
 ################################################################################
 
+cat("[DEBUG] Loading monte_carlo_simulator.R\n")
+
 simulate_applicant <- function(n_sim = 10000) {
   # Income and expense simulation
   incomes <- rnorm(n_sim, mean = income_mean, sd = income_sd)

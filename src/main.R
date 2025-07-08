@@ -13,9 +13,11 @@ source("output/output_analysis.R")
 # ------------------------------------------------------------------------------
 # RUN SIMULATION
 # ------------------------------------------------------------------------------
+cat("[DEBUG] Running Simulation...\n")
 results <- simulate_applicant(n_sim = n_simulations)
 
 # ------------------------------------------------------------------------------
 # ANALYZE RESULTS
 # ------------------------------------------------------------------------------
+cat("[DEBUG] Analyzing Results...\n")
 analyze_results(results)

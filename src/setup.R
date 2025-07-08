@@ -6,6 +6,8 @@
 # INSTALL PACKAGES
 # ------------------------------------------------------------------------------
 
+cat("[DEBUG] Loading setup.R\n")
+
 # ---- rstudioapi - enables ability to set local working dir programmatically
 if (!requireNamespace("rstudioapi", quietly = TRUE)) {
   install.packages("rstudioapi")
@@ -46,4 +48,4 @@ library(ggthemes)     # Optional for extra themes
 this_file <- normalizePath(sys.frame(1)$ofile %||% rstudioapi::getSourceEditorContext()$path)
 this_dir <- dirname(this_file)
 setwd(this_dir)
-cat("Working directory set to:", this_dir, "\n")
+cat("[DEBUG] Working directory set to:", this_dir, "\n")

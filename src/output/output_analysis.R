@@ -1,6 +1,7 @@
 ################################################################################
 # output_analysis.R
 ################################################################################
+cat("[DEBUG] Loading output_analysis.R\n")
 
 analyze_results <- function(sim_results) {
   
@@ -13,7 +14,6 @@ analyze_results <- function(sim_results) {
   # ----------------------------------------------------------------------------
   hist(sim_results$NetCashFlow, breaks = 30, col = "lightblue",
        main = "Simulated Net Cash Flow", xlab = "Net Cash Flow")
-
   
   # ----------------------------------------------------------------------------
   # HISTOGRAM - EXPLORT TO FILE

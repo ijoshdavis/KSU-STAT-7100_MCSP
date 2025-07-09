@@ -21,7 +21,7 @@ analyze_results <- function(sim_results) {
   
   # ---- Open a PNG device (create file) ---- 
   png("net_cash_flow_hist.png", width = 1280, height = 720) 
-  
+  #Hi 
   # ---- Histogram to memory ---- 
   hist(sim_results$NetCashFlow, breaks = 30, col = "lightblue",
        main = "Simulated Net Cash Flow", xlab = "Net Cash Flow")

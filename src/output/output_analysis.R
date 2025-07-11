@@ -1,66 +1,46 @@
-# output_analysis.R
+# plot_loan_results.R
+library(ggplot2)
 
-analyze_loan_approval_factors <- function(sim_data) {
-  library(ggplot2)
-  library(randomForest)
-  
-  # Ensure factors have correct levels
-  sim_data$HealthStatus <- factor(sim_data$HealthStatus, levels = c("Poor", "Fair", "Good"))
-  sim_data$Approved <- factor(sim_data$Approved, levels = c(0, 1))
-  
-  # Logistic regression
-  logit_model <- glm(Approved ~ Age + Income + CreditScore + HealthStatus,
-                     data = sim_data,
-                     family = binomial,
-                     control = glm.control(maxit = 50))
-  
-  cat("\n--- Logistic Regression Summary ---\n")
-  print(summary(logit_model))
-  
-  # Odds ratios and confidence intervals
-  exp_coef <- exp(coef(logit_model))
-  confint_logit <- exp(confint(logit_model))
-  
-  odds_ratios <- data.frame(
-    Factor = names(exp_coef),
-    OddsRatio = exp_coef,
-    Lower95CI = confint_logit[, 1],
-    Upper95CI = confint_logit[, 2]
-  )
-  
-  cat("\n--- Odds Ratios with 95% Confidence Intervals ---\n")
-  print(odds_ratios)
-  
-  # Plots
-  print(
-    ggplot(sim_data, aes(x = Approved, y = Income)) +
-      geom_boxplot(fill = "skyblue") +
-      labs(title = "Income by Loan Approval", x = "Approval (0=Denied,1=Approved)", y = "Income")
-  )
-  
-  print(
-    ggplot(sim_data, aes(x = Approved, y = CreditScore)) +
-      geom_boxplot(fill = "lightgreen") +
-      labs(title = "Credit Score by Loan Approval", x = "Approval", y = "Credit Score")
-  )
-  
-  print(
-    ggplot(sim_data, aes(x = HealthStatus, fill = Approved)) +
-      geom_bar(position = "dodge") +
-      labs(title = "Health Status by Approval", fill = "Approval")
-  )
-  
-  # Random forest model
-  rf_model <- randomForest(Approved ~ Age + Income + CreditScore + HealthStatus,
-                           data = sim_data, importance = TRUE, ntree = 500)
-  
-  cat("\n--- Random Forest Model Summary ---\n")
-  print(rf_model)
-  
-  cat("\n--- Variable Importance ---\n")
-  print(importance(rf_model))
-  
-  varImpPlot(rf_model)
-  
-  return(list(logistic_model = logit_model, random_forest_model = rf_model))
+plot_approval_probability <- function(sim_data) {
+  # Basic histogram of approval
+  ggplot(sim_data, aes(x = CanAffordLoan)) +
+    geom_bar(fill = "steelblue") +
+    labs(title = "Loan Approval Counts",
+         x = "Loan Approved (TRUE/FALSE)",
+         y = "Count") +
+    theme_minimal()
 }
+
+plot_credit_vs_approval <- function(sim_data) {
+  ggplot(sim_data, aes(x = CreditScore, fill = CanAffordLoan)) +
+    geom_histogram(position = "identity", alpha = 0.6, bins = 30) +
+    labs(title = "Credit Score Distribution by Loan Approval",
+         x = "Credit Score",
+         y = "Count") +
+    theme_minimal()
+}
+
+plot_Income_vs_approval <- function(data) {
+  ggplot(data, aes(x = Income, fill = as.factor(CanAffordLoan))) +
+    geom_histogram(position = "identity", bins = 30, alpha = 0.6) +
+    labs(title = "Income vs Loan Approval",
+         x = "Income",
+         y = "Count",
+         fill = "Approved (1 = Yes)") +
+    theme_minimal()
+}
+
+
+
+
+plot_HealthStatus_vs_approval <- function(data) {
+  ggplot(data, aes(x = HealthStatus, fill = CanAffordLoan)) +
+    geom_bar(position = "fill") +
+    labs(title = "Loan Approval Rate by Health Status",
+         x = "Health Status",
+         y = "Proportion Approved",
+         fill = "Approved") +
+    scale_fill_manual(values = c("TRUE" = "steelblue", "FALSE" = "tomato")) +
+    theme_minimal()
+}
+#print(plot_HealthStatus_vs_approval(sim_data))

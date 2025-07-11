@@ -1,18 +1,19 @@
-# monte_carlo_simulation.R
-
 run_loan_simulation <- function(n = 1000) {
   set.seed(123)
   
   # Simulate variables
-  Age <- round(runif(n, 18, 80))  # Age between 18 and 80
+  Age <- round(runif(n, 50, 80))  # Age between 50 and 80
   Income <- round(rnorm(n, mean = 50000, sd = 15000))
   CreditScore <- round(rnorm(n, mean = 650, sd = 70))
+  
+  # Simulate HealthStatus with given probabilities
+  HealthStatus <- sample(c("Good", "Fair", "Poor"), size = n, replace = TRUE, prob = c(0.5, 0.3, 0.2))
   
   # Simple loan affordability rule for simulation
   CanAffordLoan <- (Income > 30000) & (CreditScore > 600)
   
-  # Create data frame
-  sim_data <- data.frame(Age, Income, CreditScore, CanAffordLoan)
+  # Create data frame including HealthStatus
+  sim_data <- data.frame(Age, Income, CreditScore, HealthStatus, CanAffordLoan)
   
   return(sim_data)
 }

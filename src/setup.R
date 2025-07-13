@@ -2,6 +2,26 @@
 # setup.R
 ################################################################################
 
+# -----------------------------
+# GLOBAL SIMULATION SETTINGS
+# -----------------------------
+SIM_SEED <- 123
+SIM_N <- 10000
+
+AGE_MIN <- 50
+AGE_MAX <- 80
+
+INCOME_MEAN <- 50000
+INCOME_SD <- 15000
+
+CREDIT_MEAN <- 650
+CREDIT_SD <- 70
+
+LOAN_INCOME_THRESHOLD <- 30000
+LOAN_CREDIT_THRESHOLD <- 600
+
+HEALTH_PROBS <- c(Good = 0.5, Fair = 0.3, Poor = 0.2)
+
 # ------------------------------------------------------------------------------
 # GLOBAL FUNCTIONS
 # ------------------------------------------------------------------------------
@@ -61,3 +81,9 @@ if (!requireNamespace("crayon", quietly = TRUE)) {
   install.packages("crayon")
 }
 library(crayon)  # for bayesglm
+
+# ---- broom - used to convert model outputs into tidy data frames
+if (!requireNamespace("broom", quietly = TRUE)) {
+  install.packages("broom")
+}
+library(broom)   # for tidy() output of models

@@ -5,9 +5,9 @@
 # ------------------------------------------------------------------------------
 # PLOT - APPROVAL PROBABILITY
 # ------------------------------------------------------------------------------
-plot_approval_probability <- function(sim_data, file_path = "figures/approval_plot.png") {
+plot_approval_probability <- function(sim_data) {
   # Basic histogram of approval
-  p <- ggplot(sim_data, aes(x = CanAffordLoan)) +
+  ggplot(sim_data, aes(x = CanAffordLoan)) +
     geom_bar(fill = "steelblue") +
     labs(title = "Loan Approval Counts",
          x = "Loan Approved (TRUE/FALSE)",
@@ -17,8 +17,6 @@ plot_approval_probability <- function(sim_data, file_path = "figures/approval_pl
       panel.background = element_rect(fill = "white", color = NA),
       plot.background = element_rect(fill = "white", color = NA)
     )
-  
-  ggsave(file_path, plot = p, width = 1920, height = 1080, units = "px", dpi = 300)
 }
 
 
@@ -26,7 +24,7 @@ plot_approval_probability <- function(sim_data, file_path = "figures/approval_pl
 # ------------------------------------------------------------------------------
 # PLOT - CREDIT VS. APPROVAL
 # ------------------------------------------------------------------------------
-plot_credit_vs_approval <- function(sim_data, file_path = "figures/credit_approval_plot.png") {
+plot_credit_vs_approval <- function(sim_data) {
   p <- ggplot(sim_data, aes(x = CreditScore, fill = CanAffordLoan)) +
     geom_histogram(position = "identity", alpha = 0.6, bins = 30) +
     labs(title = "Credit Score Distribution by Loan Approval",
@@ -37,9 +35,6 @@ plot_credit_vs_approval <- function(sim_data, file_path = "figures/credit_approv
       panel.background = element_rect(fill = "white", color = NA),
       plot.background = element_rect(fill = "white", color = NA)
     )
-  
-  ggsave(file_path, plot = p, width = 1920, height = 1080, units = "px", dpi = 300)
-  
 }
 
 
@@ -47,7 +42,7 @@ plot_credit_vs_approval <- function(sim_data, file_path = "figures/credit_approv
 # ------------------------------------------------------------------------------
 # PLOT - INCOME VS. APPROVAL
 # ------------------------------------------------------------------------------
-plot_Income_vs_approval <- function(simdata, file_path = "figures/income_approval_plot.png") {
+plot_Income_vs_approval <- function(simdata) {
   p <- ggplot(simdata, aes(x = Income, fill = as.factor(CanAffordLoan))) +
     geom_histogram(position = "identity", bins = 30, alpha = 0.6) +
     labs(title = "Income vs Loan Approval",
@@ -59,8 +54,6 @@ plot_Income_vs_approval <- function(simdata, file_path = "figures/income_approva
       panel.background = element_rect(fill = "white", color = NA),
       plot.background = element_rect(fill = "white", color = NA)
     )
-  
-  ggsave(file_path, plot = p, width = 1920, height = 1080, units = "px", dpi = 300)
 }
 
 
@@ -68,7 +61,7 @@ plot_Income_vs_approval <- function(simdata, file_path = "figures/income_approva
 # ------------------------------------------------------------------------------
 # PLOT - HEALTH STATUS VS. APPROVAL
 # ------------------------------------------------------------------------------
-plot_HealthStatus_vs_approval <- function(simdata, file_path = "figures/health_approval_plot.png") {
+plot_HealthStatus_vs_approval <- function(simdata) {
   p <- ggplot(simdata, aes(x = HealthStatus, fill = CanAffordLoan)) +
     geom_bar(position = "fill") +
     labs(title = "Loan Approval Rate by Health Status",
@@ -81,6 +74,5 @@ plot_HealthStatus_vs_approval <- function(simdata, file_path = "figures/health_a
       panel.background = element_rect(fill = "white", color = NA),
       plot.background = element_rect(fill = "white", color = NA)
     )
-  
-  ggsave(file_path, plot = p, width = 1920, height = 1080, units = "px", dpi = 300)
 }
+

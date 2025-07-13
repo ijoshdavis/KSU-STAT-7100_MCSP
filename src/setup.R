@@ -23,22 +23,8 @@ LOAN_CREDIT_THRESHOLD <- 600
 HEALTH_PROBS <- c(Good = 0.5, Fair = 0.3, Poor = 0.2)
 
 # ------------------------------------------------------------------------------
-# GLOBAL FUNCTIONS
-# ------------------------------------------------------------------------------
-# Default DEBUG blue color
-blue_color <- make_style("#0000FF")
-
-# Define a styled debug_print function
-debug_print <- function(msg) {
-  cat(blue_color$italic(paste0("[DEBUG] ", msg, "\n\n")))
-}
-
-
-
-# ------------------------------------------------------------------------------
 # INSTALL PACKAGES
 # ------------------------------------------------------------------------------
-debug_print("Loading Install Packages...")
 
 # ---- rstudioapi - enables ability to set local working dir programmatically
 if (!requireNamespace("rstudioapi", quietly = TRUE)) {
@@ -87,3 +73,15 @@ if (!requireNamespace("broom", quietly = TRUE)) {
   install.packages("broom")
 }
 library(broom)   # for tidy() output of models
+
+
+# ------------------------------------------------------------------------------
+# GLOBAL FUNCTIONS
+# ------------------------------------------------------------------------------
+# Default DEBUG blue color
+blue_color <- make_style("#0000FF")
+
+# Define a styled debug_print function
+debug_print <- function(msg) {
+  cat(blue_color$italic(paste0("[DEBUG] ", msg, "\n\n")))
+}

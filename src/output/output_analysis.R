@@ -42,8 +42,8 @@ plot_credit_vs_approval <- function(sim_data) {
 # ------------------------------------------------------------------------------
 # PLOT - INCOME VS. APPROVAL
 # ------------------------------------------------------------------------------
-plot_Income_vs_approval <- function(simdata) {
-  p <- ggplot(simdata, aes(x = Income, fill = as.factor(CanAffordLoan))) +
+plot_Income_vs_approval <- function(sim_data) {
+  p <- ggplot(sim_data, aes(x = Income, fill = as.factor(CanAffordLoan))) +
     geom_histogram(position = "identity", bins = 30, alpha = 0.6) +
     labs(title = "Income vs Loan Approval",
          x = "Income",
@@ -61,8 +61,8 @@ plot_Income_vs_approval <- function(simdata) {
 # ------------------------------------------------------------------------------
 # PLOT - HEALTH STATUS VS. APPROVAL
 # ------------------------------------------------------------------------------
-plot_HealthStatus_vs_approval <- function(simdata) {
-  p <- ggplot(simdata, aes(x = HealthStatus, fill = CanAffordLoan)) +
+plot_HealthStatus_vs_approval <- function(sim_data) {
+  p <- ggplot(sim_data, aes(x = HealthStatus, fill = CanAffordLoan)) +
     geom_bar(position = "fill") +
     labs(title = "Loan Approval Rate by Health Status",
          x = "Health Status",
@@ -76,3 +76,14 @@ plot_HealthStatus_vs_approval <- function(simdata) {
     )
 }
 
+
+
+
+
+plot_approval_probability_curve <- function(sim_data) {
+  ggplot(sim_data, aes(x = Income, y = as.numeric(CanAffordLoan))) +
+    geom_smooth(method = "glm", method.args = list(family = "binomial"), se = TRUE) +
+    labs(title = "Probability of Approval by Income",
+         x = "Income", y = "Estimated Approval Probability") +
+    theme_minimal()
+}

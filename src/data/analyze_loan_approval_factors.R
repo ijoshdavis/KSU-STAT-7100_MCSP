@@ -1,5 +1,6 @@
+################################################################################
 # analyze_loan_approval_factors.R
-library(arm)  # for bayesglm
+################################################################################
 
 analyze_loan_approval_factors <- function(sim_data) {
   # Fit Bayesian logistic regression to predict loan approval

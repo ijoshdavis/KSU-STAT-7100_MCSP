@@ -3,10 +3,22 @@
 ################################################################################
 
 # ------------------------------------------------------------------------------
+# GLOBAL FUNCTIONS
+# ------------------------------------------------------------------------------
+# Default DEBUG blue color
+blue_color <- make_style("#0000FF")
+
+# Define a styled debug_print function
+debug_print <- function(msg) {
+  cat(blue_color$italic(paste0("[DEBUG] ", msg, "\n\n")))
+}
+
+
+
+# ------------------------------------------------------------------------------
 # INSTALL PACKAGES
 # ------------------------------------------------------------------------------
-
-cat("[DEBUG] Loading setup.R\n")
+debug_print("Loading Install Packages...")
 
 # ---- rstudioapi - enables ability to set local working dir programmatically
 if (!requireNamespace("rstudioapi", quietly = TRUE)) {
@@ -38,14 +50,14 @@ if (!requireNamespace("ggthemes", quietly = TRUE)) {
 }
 library(ggthemes)     # Optional for extra themes
 
+# ---- arm - used for applied regression model
+if (!requireNamespace("arm", quietly = TRUE)) {
+  install.packages("arm")
+}
+library(arm)  # for bayesglm
 
-
-# ------------------------------------------------------------------------------
-# ENVIRONMENT SETUP
-# ------------------------------------------------------------------------------
-
-# ---- Dynamically set working directory to the folder containing this script
-this_file <- normalizePath(sys.frame(1)$ofile %||% rstudioapi::getSourceEditorContext()$path)
-this_dir <- dirname(this_file)
-setwd(this_dir)
-cat("[DEBUG] Working directory set to:", this_dir, "\n")
+# ---- crayon - used for making console data better
+if (!requireNamespace("crayon", quietly = TRUE)) {
+  install.packages("crayon")
+}
+library(crayon)  # for bayesglm

@@ -74,6 +74,12 @@ if (!requireNamespace("broom", quietly = TRUE)) {
 }
 library(broom)   # for tidy() output of models
 
+# ---- pROC - ?????
+if (!requireNamespace("pROC", quietly = TRUE)) {
+  install.packages("pROC")
+}
+library(pROC)  # 
+
 
 # ------------------------------------------------------------------------------
 # GLOBAL FUNCTIONS

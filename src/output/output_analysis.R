@@ -78,12 +78,59 @@ plot_HealthStatus_vs_approval <- function(sim_data) {
 
 
 
-
-
+# ------------------------------------------------------------------------------
+# PLOT - APPROVAL PROB CURVE (LOOKS PRETTY - NOT SURE IF USEFUL)
+# ------------------------------------------------------------------------------
 plot_approval_probability_curve <- function(sim_data) {
   ggplot(sim_data, aes(x = Income, y = as.numeric(CanAffordLoan))) +
     geom_smooth(method = "glm", method.args = list(family = "binomial"), se = TRUE) +
     labs(title = "Probability of Approval by Income",
          x = "Income", y = "Estimated Approval Probability") +
+    theme_minimal() +
+    theme(
+      panel.background = element_rect(fill = "white", color = NA),
+      plot.background = element_rect(fill = "white", color = NA)
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+plot_approval_vs_income <- function(model, sim_data) {
+  sim_data$pred_prob <- predict(model, type = "response")
+  
+  ggplot(sim_data, aes(x = Income, y = pred_prob)) +
+    geom_point(alpha = 0.3) +
+    geom_smooth(method = "loess") +
+    labs(title = "Predicted Approval Probability by Income",
+         x = "Income", y = "Predicted Probability") +
     theme_minimal()
+}
+
+
+
+plot_roc_curve <- function(model, sim_data) {
+  prob <- predict(model, type = "response")
+  roc_obj <- roc(sim_data$CanAffordLoan, prob)
+  
+  plot(roc_obj, main = "ROC Curve for Loan Approval Model", col = "blue")
+  print(paste("AUC:", round(auc(roc_obj), 3)))
+}
+
+plot_confusion_matrix <- function(model, sim_data, threshold = 0.5) {
+  sim_data$pred <- ifelse(predict(model, type = "response") > threshold, 1, 0)
+  table_actual_pred <- table(Actual = sim_data$CanAffordLoan, Predicted = sim_data$pred)
+  print(table_actual_pred)
 }

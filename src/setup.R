@@ -88,3 +88,12 @@ blue_color <- make_style("#0000FF")
 debug_print <- function(msg) {
   cat(blue_color$italic(paste0("[DEBUG] ", msg, "\n\n")))
 }
+
+# Define an export to file function of charts at predefined resolution
+export_plot <- function(filename, p) {
+  ggsave(paste0("output/",filename,"-", SIM_SEED, ".png"), p,
+         width = 1920, height = 1080, units = "px", dpi = 300)
+}
+
+
+

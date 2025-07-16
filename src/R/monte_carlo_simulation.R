@@ -2,7 +2,10 @@
 # Monte_carlo-Simulation.R
 ################################################################################
 
-run_loan_simulation <- function(n = 10000) {
+# ------------------------------------------------------------------------------
+# SIMULATION POPULATION 
+# ------------------------------------------------------------------------------
+loan_population_gen <- function(n = 10000) {
     set.seed(SIM_SEED)
     
     # Simulate input variables
@@ -26,7 +29,12 @@ run_loan_simulation <- function(n = 10000) {
     )
 }
 
-analyze_loan_approval_factors <- function(sim_data) {
+
+
+# ------------------------------------------------------------------------------
+# APPROVAL SIMULATOR 
+# ------------------------------------------------------------------------------
+simulate_loan_approval <- function(sim_data) {
   # Fit Bayesian logistic regression to predict loan approval
   model <- bayesglm(CanAffordLoan ~ Age + Income + CreditScore + HEALTH_PROBS[HealthStatus],
                     data = sim_data,

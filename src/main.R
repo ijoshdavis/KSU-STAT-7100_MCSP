@@ -15,18 +15,13 @@ source("output/output_analysis.R")
 # ------------------------------------------------------------------------------
 debug_print("Running Simulation...")
 sim_data <- run_loan_simulation(n = 10000)
+model <- analyze_loan_approval_factors(sim_data)
 
 # ------------------------------------------------------------------------------
 # ANALYZE RESULTS
 # ------------------------------------------------------------------------------
 debug_print("Analyzing Results...")
-model <- analyze_loan_approval_factors(sim_data)
-
-# ------------------------------------------------------------------------------
-# PLOT RESULTS
-# ------------------------------------------------------------------------------
 debug_print("Plot Results...")
-
 print(plot_roc_curve(model, sim_data))
 print(plot_approval_vs_income(model, sim_data))
 print(plot_model_coefficients(model))
@@ -36,6 +31,7 @@ print(plot_approval_probability(sim_data))
 print(plot_credit_vs_approval(sim_data))
 print(plot_Income_vs_approval(sim_data))
 print(plot_approval_probability_curve(sim_data))
+print(plot_approval_probability_health_curve(sim_data))
 
 
 # -----------------------------
@@ -71,13 +67,15 @@ SIM_SEED <- 777
 SIM_N <- 100000
 AGE_MIN <- 50
 AGE_MAX <- 80
-INCOME_MEAN <- 50000
+INCOME_MEAN <- 30000
 INCOME_SD <- 15000
 CREDIT_MEAN <- 650
 CREDIT_SD <- 70
 LOAN_INCOME_THRESHOLD <- 30000
 LOAN_CREDIT_THRESHOLD <- 600
-HEALTH_PROBS <- c(Good = 0.5, Fair = 0.3, Poor = 0.2)
+HEALTH_PROBS <- c(Good = 0.5,
+                  Fair = 0.3,
+                  Poor = 0.2)
 
 sim_data <- run_loan_simulation(n = SIM_N)
 debug_print("Exporting Plot Results...")
@@ -109,13 +107,15 @@ SIM_SEED <- 999
 SIM_N <- 100000
 AGE_MIN <- 50
 AGE_MAX <- 120
-INCOME_MEAN <- 50000
+INCOME_MEAN <- 40000
 INCOME_SD <- 15000
 CREDIT_MEAN <- 650
 CREDIT_SD <- 70
 LOAN_INCOME_THRESHOLD <- 30000
 LOAN_CREDIT_THRESHOLD <- 600
-HEALTH_PROBS <- c(Good = 0.5, Fair = 0.3, Poor = 0.2)
+HEALTH_PROBS <- c(Good = 0.5,
+                  Fair = 0.3,
+                  Poor = 0.2)
 
 sim_data <- run_loan_simulation(n = SIM_N)
 debug_print("Exporting Plot Results...")

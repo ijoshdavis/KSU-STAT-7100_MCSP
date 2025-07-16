@@ -7,20 +7,17 @@
 # -----------------------------
 SIM_SEED <- 123
 SIM_N <- 10000
-
 AGE_MIN <- 50
 AGE_MAX <- 80
-
 INCOME_MEAN <- 50000
 INCOME_SD <- 15000
-
 CREDIT_MEAN <- 650
 CREDIT_SD <- 70
-
 LOAN_INCOME_THRESHOLD <- 30000
 LOAN_CREDIT_THRESHOLD <- 600
-
-HEALTH_PROBS <- c(Good = 0.5, Fair = 0.3, Poor = 0.2)
+HEALTH_PROBS <- c(Good = 0.5,
+                  Fair = 0.3,
+                  Poor = 0.2)
 
 # ------------------------------------------------------------------------------
 # INSTALL PACKAGES

@@ -95,7 +95,20 @@ plot_approval_probability_curve <- function(sim_data) {
 
 
 
-
+# ------------------------------------------------------------------------------
+# PLOT - APPROVAL PROB CURVE (LOOKS PRETTY - NOT SURE IF USEFUL)
+# ------------------------------------------------------------------------------
+plot_approval_probability_health_curve <- function(sim_data) {
+  ggplot(sim_data, aes(x = HEALTH_PROBS[HealthStatus], y = as.numeric(CanAffordLoan))) +
+    geom_smooth(method = "glm", method.args = list(family = "binomial"), se = TRUE) +
+    labs(title = "Probability of Approval by Health Status",
+         x = "Health Status", y = "Estimated Approval Probability") +
+    theme_minimal() +
+    theme(
+      panel.background = element_rect(fill = "white", color = NA),
+      plot.background = element_rect(fill = "white", color = NA)
+    )
+}
 
 
 

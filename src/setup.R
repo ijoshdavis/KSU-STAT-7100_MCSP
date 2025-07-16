@@ -71,11 +71,18 @@ if (!requireNamespace("broom", quietly = TRUE)) {
 }
 library(broom)   # for tidy() output of models
 
-# ---- pROC - ?????
+# ---- pROC -
 if (!requireNamespace("pROC", quietly = TRUE)) {
   install.packages("pROC")
 }
 library(pROC)  # 
+
+# ---- dplyr
+if (!requireNamespace("dplyr", quietly = TRUE)) {
+  install.packages("dplyr")
+}
+library(dplyr)  # 
+
 
 
 # ------------------------------------------------------------------------------

@@ -146,62 +146,129 @@ prob_approval_health_curve <- function(sim_data) {
 
 
 
-# ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
-# NOT USEFUL
-# ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
-
-
-
 
 # ------------------------------------------------------------------------------
-# PLOT - APPROVAL PROBABILITY
+# COUNTS
 # ------------------------------------------------------------------------------
-plot_approval_probability <- function(sim_data) {
-  # Basic histogram of approval
-  ggplot(sim_data, aes(x = CanAffordLoan)) +
-    geom_bar(fill = "steelblue") +
-    labs(title = "Loan Approval Counts",
-         x = "Loan Approved (TRUE/FALSE)",
-         y = "Count") +
+counts_approval <- function(sim_data) {
+  sim_data %>%
+    count(CanAffordLoan) %>%
+    arrange(desc(CanAffordLoan)) %>%
+    mutate(
+      prop = n / sum(n),
+      ypos = cumsum(n) - 0.5 * n,        # Midpoint of each slice
+      label = paste0(n, " (", round(prop * 100), "%)")
+    ) %>%
+    ggplot(aes(x = "", y = n, fill = as.factor(CanAffordLoan))) +
+    geom_col(width = 1, color = "white") +
+    geom_text(aes(y = ypos, label = label), color = "black") +
+    coord_polar(theta = "y") +
+    labs(
+      title = "Loan Approvals",
+      fill = "Loan Approved"
+    ) +
+    theme_void() +
+    theme(
+      plot.background = element_rect(fill = "white", color = NA),
+      legend.position = "right"
+    )
+}
+
+counts_health <- function(sim_data) {
+  sim_data %>%
+    count(HealthStatus) %>%
+    arrange(desc(HealthStatus)) %>%
+    mutate(
+      prop = n / sum(n),
+      ypos = cumsum(n) - 0.5 * n,        # Midpoint of each slice
+      label = paste0(n, " (", round(prop * 100), "%)")
+    ) %>%
+    ggplot(aes(x = "", y = n, fill = as.factor(HealthStatus))) +
+    geom_col(width = 1, color = "white") +
+    geom_text(aes(y = ypos, label = label), color = "black") +
+    coord_polar(theta = "y") +
+    labs(
+      title = "Health Status Distribution",
+      fill = "Health Status"
+    ) +
+    theme_void() +
+    theme(
+      plot.background = element_rect(fill = "white", color = NA),
+      legend.position = "right"
+    )
+}
+
+counts_age <- function(sim_data) {
+  sim_data %>%
+    count(Age) %>%
+    ggplot(aes(x = Age, y = n)) +
+    geom_col(fill = "steelblue", color = "white") +
+    geom_text(aes(label = n), vjust = -0.5, size = 3) +
+    labs(
+      title = "Ages Distribution",
+      x = "Age",
+      y = "Count"
+    ) +
     theme_minimal() +
     theme(
-      panel.background = element_rect(fill = "white", color = NA),
+      plot.background = element_rect(fill = "white", color = NA)
+    )
+}
+
+counts_credit <- function(sim_data) {
+  ggplot(sim_data, aes(x = CreditScore)) +
+    geom_histogram(binwidth = 10, fill = "steelblue", color = "white") +
+    labs(
+      title = "Credit Score Distribution",
+      x = "Credit Score",
+      y = "Count"
+    ) +
+    theme_minimal() +
+    theme(
       plot.background = element_rect(fill = "white", color = NA)
     )
 }
 
 
-
 # ------------------------------------------------------------------------------
-# PLOT - CREDIT VS. APPROVAL
+# COUNTS & APPROVAL
 # ------------------------------------------------------------------------------
-plot_credit_vs_approval <- function(sim_data) {
+histo_approval_credit <- function(sim_data) {
   p <- ggplot(sim_data, aes(x = CreditScore, fill = CanAffordLoan)) +
     geom_histogram(position = "identity", alpha = 0.6, bins = 30) +
-    labs(title = "Credit Score Distribution by Loan Approval",
+    labs(title = "Credit Score Distribution vs. Approval",
          x = "Credit Score",
-         y = "Count") +
-    theme_minimal() +
-    theme(
-      panel.background = element_rect(fill = "white", color = NA),
-      plot.background = element_rect(fill = "white", color = NA)
-    )
-}
-
-
-
-# ------------------------------------------------------------------------------
-# PLOT - INCOME VS. APPROVAL
-# ------------------------------------------------------------------------------
-plot_Income_vs_approval <- function(sim_data) {
-  p <- ggplot(sim_data, aes(x = Income, fill = as.factor(CanAffordLoan))) +
-    geom_histogram(position = "identity", bins = 30, alpha = 0.6) +
-    labs(title = "Income vs Loan Approval",
-         x = "Income",
          y = "Count",
-         fill = "Approved (1 = Yes)") +
+         fill = "Loan Approved") +
+    theme_minimal() +
+    theme(
+      panel.background = element_rect(fill = "white", color = NA),
+      plot.background = element_rect(fill = "white", color = NA)
+    )
+}
+
+histo_approval_age <- function(sim_data) {
+  p <- ggplot(sim_data, aes(x = Age, fill = CanAffordLoan)) +
+    geom_histogram(position = "identity", alpha = 0.6, bins = 30) +
+    labs(title = "Age Distribution vs. Approval",
+         x = "Age",
+         y = "Count",
+         fill = "Loan Approved") +
+    theme_minimal() +
+    theme(
+      panel.background = element_rect(fill = "white", color = NA),
+      plot.background = element_rect(fill = "white", color = NA)
+    )
+}
+
+histo_approval_income <- function(sim_data) {
+  p <- ggplot(sim_data, aes(x = Income, fill = CanAffordLoan)) +
+    geom_histogram(position = "identity", alpha = 0.6, bins = 30) +
+    labs(
+      title = "Income Distribution vs. Approval",
+      x = "Income",
+      y = "Count",
+      fill = "Loan Approved") +
     theme_minimal() +
     theme(
       panel.background = element_rect(fill = "white", color = NA),
@@ -212,42 +279,44 @@ plot_Income_vs_approval <- function(sim_data) {
 
 
 # ------------------------------------------------------------------------------
-# PLOT - HEALTH STATUS VS. APPROVAL
 # ------------------------------------------------------------------------------
-plot_HealthStatus_vs_approval <- function(sim_data) {
-  p <- ggplot(sim_data, aes(x = HealthStatus, fill = CanAffordLoan)) +
-    geom_bar(position = "fill") +
-    labs(title = "Loan Approval Rate by Health Status",
-         x = "Health Status",
-         y = "Proportion Approved",
-         fill = "Approved") +
-    scale_fill_manual(values = c("TRUE" = "steelblue", "FALSE" = "tomato")) +
+# MAYBE
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+
+plot_bayesglm_coefficients <- function(model) {
+  # Get summary and confidence intervals
+  coefs <- summary(model)$coefficients
+  conf_int <- confint(model)
+  
+  # Prepare data frame for plotting
+  coef_df <- as.data.frame(coefs)
+  coef_df$term <- rownames(coef_df)
+  coef_df$lower <- conf_int[, 1]
+  coef_df$upper <- conf_int[, 2]
+  
+  # Clean up for plotting: remove intercept and HealthStatus terms
+  coef_df <- coef_df %>%
+    filter(term != "(Intercept)",
+           !grepl("HealthStatus", term)) %>%
+    mutate(term = factor(term, levels = rev(term)))
+  
+  # Plot
+  ggplot(coef_df, aes(x = Estimate, y = term)) +
+    geom_point(color = "steelblue", size = 3) +
+    geom_errorbarh(aes(xmin = lower, xmax = upper), height = 0.2, color = "gray40") +
+    labs(
+      title = "Bayesian Logistic Regression Coefficients",
+      x = "Coefficient Estimate",
+      y = "Predictor"
+    ) +
     theme_minimal() +
     theme(
-      panel.background = element_rect(fill = "white", color = NA),
-      plot.background = element_rect(fill = "white", color = NA)
+      plot.background = element_rect(fill = "white", color = NA),
+      panel.grid.major.y = element_blank()
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 plot_confusion_matrix <- function(model, sim_data, threshold = 0.5) {

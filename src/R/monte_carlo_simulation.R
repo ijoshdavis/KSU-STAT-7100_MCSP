@@ -35,17 +35,38 @@ loan_population_gen <- function(n = 10000) {
 # APPROVAL SIMULATOR 
 # ------------------------------------------------------------------------------
 simulate_loan_approval <- function(sim_data) {
-  # Fit Bayesian logistic regression to predict loan approval
-  model <- bayesglm(CanAffordLoan ~ Age + Income + CreditScore + HealthStatus,
-                    data = sim_data,
-                    family = binomial(link = "logit"))
+  # Try fitting the model
+  model <- tryCatch({
+    bayesglm(
+      CanAffordLoan ~ Age + Income + CreditScore + HealthStatus,
+      data = sim_data,
+      family = binomial(link = "logit")
+    )
+  }, error = function(e) {
+    message("Model fitting failed: ", conditionMessage(e))
+    return(NULL)
+  })
   
-  # Summary of the model
-  print(summary(model))
+  # Exit early if model failed
+  if (is.null(model)) {
+    message("Model is NULL. Skipping summary and confint.")
+    return(NULL)
+  }
   
-  # Confidence intervals
-  conf_int <- confint(model)
-  print(conf_int)
+  # Try summary
+  tryCatch({
+    print(summary(model))
+  }, error = function(e) {
+    message("summary() failed: ", conditionMessage(e))
+  })
+  
+  # Try confidence interval
+  tryCatch({
+    conf_int <- confint(model)
+    print(conf_int)
+  }, error = function(e) {
+    message("confint() failed: ", conditionMessage(e))
+  })
   
   return(model)
 }

@@ -36,7 +36,7 @@ loan_population_gen <- function(n = 10000) {
 # ------------------------------------------------------------------------------
 simulate_loan_approval <- function(sim_data) {
   # Fit Bayesian logistic regression to predict loan approval
-  model <- bayesglm(CanAffordLoan ~ Age + Income + CreditScore + HEALTH_PROBS[HealthStatus],
+  model <- bayesglm(CanAffordLoan ~ Age + Income + CreditScore + HealthStatus,
                     data = sim_data,
                     family = binomial(link = "logit"))
   

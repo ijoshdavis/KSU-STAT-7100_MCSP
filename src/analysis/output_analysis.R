@@ -15,11 +15,33 @@
 # GENERAL
 # ------------------------------------------------------------------------------
 plot_roc_curve <- function(model, sim_data) {
+  # Get predicted probabilities
   prob <- predict(model, type = "response")
+  
+  # Compute ROC object
   roc_obj <- roc(sim_data$CanAffordLoan, prob)
   
-  plot(roc_obj, main = "ROC Curve for Loan Approval Model", col = "blue")
-  print(paste("AUC:", round(auc(roc_obj), 3)))
+  # Extract ROC curve points
+  roc_df <- data.frame(
+    FPR = 1 - roc_obj$specificities,
+    TPR = roc_obj$sensitivities
+  )
+  
+  # Create ggplot object
+  p <- ggplot(roc_df, aes(x = FPR, y = TPR)) +
+    geom_line(color = "blue", size = 1) +
+    geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "gray") +
+    labs(
+      title = paste("ROC Curve (AUC:", round(auc(roc_obj), 3), ")"),
+      x = "False Positive Rate",
+      y = "True Positive Rate"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.background = element_rect(fill = "white", color = NA)
+    )
+  
+  return(p)
 }
 
 

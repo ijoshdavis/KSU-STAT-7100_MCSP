@@ -97,7 +97,7 @@ debug_print <- function(msg) {
 # Define an export to file function of charts at predefined resolution
 export_plot <- function(filename, p) {
   ggsave(paste0("output/",filename,"-", SIM_SEED, ".png"), p,
-         width = 1920, height = 1080, units = "px", dpi = 300)
+         width = 1080, height = 1080, units = "px", dpi = 300)
 }
 
 

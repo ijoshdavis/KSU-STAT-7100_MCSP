@@ -58,6 +58,7 @@ export_plot("EXP0 - counts_approval", counts_approval(sim_data))
 export_plot("EXP0 - counts_age", counts_age(sim_data))
 export_plot("EXP0 - counts_health", counts_health(sim_data))
 export_plot("EXP0 - counts_credit", counts_credit(sim_data))
+export_plot("EXP0 - counts_income", counts_income(sim_data))
 
 ## HISTOGRAMS
 export_plot("EXP0 - histo_approval_credit", histo_approval_credit(sim_data))
@@ -120,6 +121,7 @@ export_plot("EXP1 - counts_approval", counts_approval(sim_data))
 export_plot("EXP1 - counts_age", counts_age(sim_data))
 export_plot("EXP1 - counts_health", counts_health(sim_data))
 export_plot("EXP1 - counts_credit", counts_credit(sim_data))
+export_plot("EXP1 - counts_income", counts_income(sim_data))
 
 ## HISTOGRAMS
 export_plot("EXP1 - histo_approval_credit", histo_approval_credit(sim_data))
@@ -182,6 +184,7 @@ export_plot("EXP2 - counts_approval", counts_approval(sim_data))
 export_plot("EXP2 - counts_age", counts_age(sim_data))
 export_plot("EXP2 - counts_health", counts_health(sim_data))
 export_plot("EXP2 - counts_credit", counts_credit(sim_data))
+export_plot("EXP2 - counts_income", counts_income(sim_data))
 
 ## HISTOGRAMS
 export_plot("EXP2 - histo_approval_credit", histo_approval_credit(sim_data))

@@ -251,6 +251,20 @@ counts_credit <- function(sim_data) {
     )
 }
 
+counts_income <- function(sim_data) {
+  ggplot(sim_data, aes(x = Income)) +
+    geom_histogram(binwidth = 2000, fill = "steelblue", color = "white") +
+    labs(
+      title = "Distribution of Income in Simulated Population",
+      x = "Income",
+      y = "Count"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.background = element_rect(fill = "white", color = NA)
+    )
+}
+
 
 # ------------------------------------------------------------------------------
 # COUNTS & APPROVAL

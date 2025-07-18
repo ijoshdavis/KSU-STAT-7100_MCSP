@@ -303,13 +303,16 @@ histo_approval_income <- function(sim_data) {
     labs(
       title = "Income Distribution vs. Approval",
       x = "Income",
-      y = "Count",
-      fill = "Loan Approved") +
+      y = "Count"
+      # Removed `fill = "Loan Approved"` label
+    ) +
     theme_minimal() +
     theme(
       panel.background = element_rect(fill = "white", color = NA),
-      plot.background = element_rect(fill = "white", color = NA)
+      plot.background = element_rect(fill = "white", color = NA),
+      legend.position = "none"  # <- this hides the legend
     )
+  return(p)
 }
 
 
